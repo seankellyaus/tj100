@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Song:</b>
+  <%= @selection.song_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @selection.user_id %>
+</p>
+
+<p>
+  <b>Number1:</b>
+  <%= @selection.number1 %>
+</p>
+
+
+<%= link_to 'Edit', edit_selection_path(@selection) %> |
+<%= link_to 'Back', selections_path %>
