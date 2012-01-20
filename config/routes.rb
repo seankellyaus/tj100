@@ -1,7 +1,13 @@
 Tj100::Application.routes.draw do
+  get "pages/home"
+
+  devise_for :users
+
   resources :selections
 
   resources :songs
+
+  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
