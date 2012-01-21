@@ -6,7 +6,7 @@ class SelectionsController < ApplicationController
   before_filter :find_user
 
   def index
-    @selections = Selection.all
+    @selections = @user.selections
 
     respond_to do |format|
       format.html # index.html.erb
@@ -90,5 +90,6 @@ class SelectionsController < ApplicationController
   private
   def find_user
     @user = current_user
+    #@user = User.first
   end
 end

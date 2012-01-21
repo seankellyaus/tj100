@@ -1,25 +1,30 @@
 <h1>Listing selections</h1>
 
-<table>
+<table class align="Listing">
   <tr>
     <th>Song</th>
+    <th>Artist</th>
     <th>User</th>
-    <th>Number1</th>
+    <th>#1</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
+ <%= @user.email  %>
+
 <% @selections.each do |selection| %>
   <tr>
-    <td><%= selection.song_id %></td>
-    <td><%= selection.user_id %></td>
+    <td><%= selection.song.name %></td>
+    <td><%= selection.song.artist %></td>
+    <td><%= selection.user.email %></td>
     <td><%= selection.number1 %></td>
     <td><%= link_to 'Show', selection %></td>
     <td><%= link_to 'Edit', edit_selection_path(selection) %></td>
     <td><%= link_to 'Destroy', selection, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
+
 </table>
 
 <br />

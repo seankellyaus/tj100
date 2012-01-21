@@ -9,9 +9,13 @@
 <body>
 <div class="container">
   <%= render 'layouts/header' %>
-  <section class="round">
+  <table  summary="Profile information">
+    <section class="round">
+
     <%= yield %>
-  </section>
+    </section>
+
+  </table>
   <%= render 'layouts/footer' %>
 </div>
 

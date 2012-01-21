@@ -18,6 +18,15 @@
     <td><%= link_to 'Add to shortlist', '#' %></td>
   </tr>
 <% end %>
+  <tr>
+
+    <nav class="round">
+      Selections <br>
+      <% @user.selections.each do |selection| %>
+          <%= selection.song.name %><br>
+      <% end %>
+    </nav>
+  </tr>
 </table>
 
 <br />

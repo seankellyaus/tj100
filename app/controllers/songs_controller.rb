@@ -1,6 +1,12 @@
 class SongsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :find_user
+
+
   # GET /songs
   # GET /songs.json
+
+
   def index
     @songs = Song.all
 
@@ -80,4 +86,11 @@ class SongsController < ApplicationController
   #    format.json { head :ok }
   #  end
   #end
+
+  private
+  def find_user
+    @user = current_user
+    #@user = User.first
+  end
+
 end

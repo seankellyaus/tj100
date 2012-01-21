@@ -1,0 +1,8 @@
+<header>
+  <nav class="round">
+   Selections <br>
+  <% @user.selections.each do |selection| %>
+    <%= selection.song.name %><br>
+    <% end %>
+  </nav>
+</header>
