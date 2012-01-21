@@ -1,0 +1,20 @@
+<header>
+  <% logo = image_tag("tj_logo.gif", :alt => "TJ100", :class => "round") %>
+  <%=  link_to logo, root_path %>
+  <nav class="round">
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "List Songs", songs_path %></li>
+      <li><%= link_to "My Picks", "#" %></li>
+      <li><%= link_to "Leaderboard", "#" %></li>
+      <% if user_signed_in? %>
+          Signed in as <%= current_user.email %>
+          <%= link_to "Sign out", logout_path %>
+
+    <% else %>
+          <%= link_to "Sign up", new_user_registration_path %>
+          <%= link_to "Sign in", new_user_session_path %>
+      <% end %>
+    </ul>
+  </nav>
+</header>

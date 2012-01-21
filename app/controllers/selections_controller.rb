@@ -1,6 +1,10 @@
 class SelectionsController < ApplicationController
   # GET /selections
   # GET /selections.json
+  before_filter :authenticate_user!
+
+  before_filter :find_user
+
   def index
     @selections = Selection.all
 
@@ -24,7 +28,8 @@ class SelectionsController < ApplicationController
   # GET /selections/new
   # GET /selections/new.json
   def new
-    @selection = Selection.new
+    #@selection = Selection.new
+    selection = Selection.new(params[:selection][:user])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +45,8 @@ class SelectionsController < ApplicationController
   # POST /selections
   # POST /selections.json
   def create
-    @selection = Selection.new(params[:selection])
+    #@selection = Selection.new(params[:selection])
+    selection = Selection.new(params[:selection].merge!(:user => current_user))
 
     respond_to do |format|
       if @selection.save
@@ -79,5 +85,10 @@ class SelectionsController < ApplicationController
       format.html { redirect_to selections_url }
       format.json { head :ok }
     end
+  end
+
+  private
+  def find_user
+    @user = current_user
   end
 end

@@ -1,13 +1,14 @@
 Tj100::Application.routes.draw do
   get "pages/home"
 
-  devise_for :users
-
+  devise_for :users do
+    get 'logout' => 'devise/sessions#destroy'
+  end
   resources :selections
 
   resources :songs
 
-  root :to => "home#index"
+  root :to => "pages#home"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

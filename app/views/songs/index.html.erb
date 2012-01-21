@@ -15,13 +15,10 @@
     <td><%= song.name %></td>
     <td><%= song.artist %></td>
     <td><%= song.place %></td>
-    <td><%= link_to 'Show', song %></td>
-    <td><%= link_to 'Edit', edit_song_path(song) %></td>
-    <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Add to shortlist', '#' %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Song', new_song_path %>
