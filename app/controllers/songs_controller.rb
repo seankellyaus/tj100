@@ -9,8 +9,10 @@ class SongsController < ApplicationController
 
 
   def index
-    @songs = Song.all
-
+    @search = Song.search do
+      fulltext params[:search]
+    end
+    @songs = @search.results
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs }

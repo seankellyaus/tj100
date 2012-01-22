@@ -1,5 +1,11 @@
 <h1>Listing songs</h1>
 
+<%= form_tag songs_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+<% end %>
+
 <table>
   <tr>
     <th>Name</th>
@@ -15,17 +21,12 @@
     <td><%= song.name %></td>
     <td><%= song.artist %></td>
     <td><%= song.place %></td>
-    <%= link_to 'Add to shortlist', user_song_selections_path %></td>
+    <%= link_to 'Add to shortlist', "#" %></td>
   </tr>
 <% end %>
   <tr>
 
-    <nav class="round">
-      Selections <br>
-      <% @user.selections.each do |selection| %>
-          <%= selection.song.name %><br>
-      <% end %>
-    </nav>
+    <!---->
   </tr>
 </table>
 

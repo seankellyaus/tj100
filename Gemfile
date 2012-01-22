@@ -18,6 +18,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'sunspot_rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -45,6 +46,7 @@ group :development do
   gem "hirb"
   gem "awesome_print"
   gem "rspec-rails", "~>2.7.0"
+  gem 'sunspot_solr'
 end
 
 
