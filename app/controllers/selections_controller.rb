@@ -29,7 +29,13 @@ class SelectionsController < ApplicationController
   # GET /selections/new.json
   def new
     #@selection = Selection.new
-    selection = Selection.new(params[:selection][:user])
+    #selection = Selection.new(params[:selection][:user])
+    #@selection = Selection.new(:song_id => params[:song_id], :user_id => params[:user_id])
+    #@selection = Selection.new!(:song => @song, :user => @user)
+
+    params = { :selection => { :song => @song, :user => @user } }
+    @selection = Selection.create(params[:selection])
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,8 +51,15 @@ class SelectionsController < ApplicationController
   # POST /selections
   # POST /selections.json
   def create
-    #@selection = Selection.new(params[:selection])
-    selection = Selection.new(params[:selection].merge!(:user => current_user))
+    @selection = Selection.new(params[:selection])
+    #@selection = Selection.new(params[:selection].merge!(:user => current_user))
+    #@selection = Selection.new(:song_id => params[:song_id], :user_id => params[:user_id])
+    #@selection = Selection.create!(:song => @song, :user => @user)
+    #@selection = Selection.new(:song => @song, :user => @user)
+
+    #params = { :selection => { :song => @song, :user => @user } }
+    #@selection = Selection.create(params[:selection])
+
 
     respond_to do |format|
       if @selection.save
