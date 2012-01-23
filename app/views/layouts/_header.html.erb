@@ -5,7 +5,7 @@
     <ul>
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "List Songs", songs_path %></li>
-      <li><%= link_to "My Picks", "#" %></li>
+      <li><%= link_to "My Picks", selections_path %></li>
       <li><%= link_to "Leaderboard", "#" %></li>
       <% if user_signed_in? %>
           Signed in as <%= current_user.email %>

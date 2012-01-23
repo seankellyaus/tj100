@@ -4,9 +4,11 @@ class SelectionsController < ApplicationController
   before_filter :authenticate_user!
 
   before_filter :find_user
+  before_filter :find_selections
+
+  #helper_method :submit_picks
 
   def index
-    @selections = @user.selections
 
     respond_to do |format|
       format.html # index.html.erb
@@ -64,11 +66,15 @@ class SelectionsController < ApplicationController
     #@selection = Selection.create(params[:selection])
 
     @selection = Selection.new(:song_id => params[:song_id], :user => @user)
-    @selection.save
+    if @selection.save
+      redirect_to :back, notice: 'Selection was successfully created.'
+    else
+      redirect_to :back, notice: "You have already selceted this song"
+    end
 
     #respond_to do |format|
     #  if @selection.save
-        redirect_to :back, notice: 'Selection was successfully created.'
+    #    redirect_to :back, notice: 'Selection was successfully created.'
       #  format.json { render json: @selection, status: :created, location: @selection }
       #else
       #  format.html { render action: "new" }
@@ -105,9 +111,18 @@ class SelectionsController < ApplicationController
     end
   end
 
+  def submit_picks
+    @user.submitted = true
+    @user.save
+  end
+
   private
   def find_user
     @user = current_user
     #@user = User.first
+  end
+
+  def find_selections
+    @selections = @user.selections
   end
 end

@@ -2,7 +2,7 @@ class SongsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_user
 
-  helper_method :new_selection_add
+
 
   # GET /songs
   # GET /songs.json
@@ -19,13 +19,6 @@ class SongsController < ApplicationController
     end
   end
 
-  def new_selection_add
-    @selection = Selection.create!(:song => @song, :user => @user)
-    #@selection = Selection.create!(:song_id => params[:song_id], :user_id => params[:user_id])
-    #if @selection.save
-    #  render :text => "added to favorites"
-    #end
-  end
 
   # GET /songs/1
   # GET /songs/1.json

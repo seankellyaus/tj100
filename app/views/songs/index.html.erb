@@ -34,5 +34,13 @@
   </tr>
 </table>
 
+Selections
+<% @user.selections.each do |selection| %>
+    <tr>
+      <td><%= selection.song_id %></td>
+      </td>
+
+    </tr>
+<% end %>
 <br/>
 
