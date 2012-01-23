@@ -33,8 +33,11 @@ class SelectionsController < ApplicationController
     #@selection = Selection.new(:song_id => params[:song_id], :user_id => params[:user_id])
     #@selection = Selection.new!(:song => @song, :user => @user)
 
-    params = { :selection => { :song => @song, :user => @user } }
-    @selection = Selection.create(params[:selection])
+    #params = { :selection => { :song => @song, :user => @user } }
+    #@selection = Selection.create(params[:selection])
+
+    #@selection = Selection.new(:song => @song, :user => @user)
+    #@selection.save
 
 
     respond_to do |format|
@@ -45,31 +48,33 @@ class SelectionsController < ApplicationController
 
   # GET /selections/1/edit
   def edit
-    @selection = Selection.find(params[:id])
+    @selection = Selection.find#(params[:id])
   end
 
   # POST /selections
   # POST /selections.json
   def create
-    @selection = Selection.new(params[:selection])
+    #selection = Selection.new(params[:selection])
     #@selection = Selection.new(params[:selection].merge!(:user => current_user))
-    #@selection = Selection.new(:song_id => params[:song_id], :user_id => params[:user_id])
-    #@selection = Selection.create!(:song => @song, :user => @user)
+    #@selection = Selection.new(:song_id => params[:song_i], :user_id => params[:user_id])
+    #@selection = Selection.creat!(:song => @song, :user => @user)
     #@selection = Selection.new(:song => @song, :user => @user)
 
     #params = { :selection => { :song => @song, :user => @user } }
     #@selection = Selection.create(params[:selection])
 
+    @selection = Selection.new(:song_id => params[:song_id], :user => @user)
+    @selection.save
 
-    respond_to do |format|
-      if @selection.save
-        format.html { redirect_to @selection, notice: 'Selection was successfully created.' }
-        format.json { render json: @selection, status: :created, location: @selection }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @selection.errors, status: :unprocessable_entity }
-      end
-    end
+    #respond_to do |format|
+    #  if @selection.save
+        redirect_to :back, notice: 'Selection was successfully created.'
+      #  format.json { render json: @selection, status: :created, location: @selection }
+      #else
+      #  format.html { render action: "new" }
+      #  format.json { render json: @selection.errors, status: :unprocessable_entity }
+      #end
+    #end
   end
 
   # PUT /selections/1

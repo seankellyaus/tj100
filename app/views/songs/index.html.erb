@@ -16,19 +16,23 @@
     <th></th>
   </tr>
 
-<% @songs.each do |song| %>
-  <tr>
-    <td><%= song.name %></td>
-    <td><%= song.artist %></td>
-    <td><%= song.place %></td>
-    <%= link_to 'Add to shortlist', "#" %></td>
-  </tr>
-<% end %>
+  <% @songs.each do |song| %>
+      <tr>
+        <td><%= song.name %></td>
+        <td><%= link_to song.name, song_path(song) %></td>
+        <td><%= song.artist %></td>
+        <td><%= song.place %></td>
+        <td>
+          <%= link_to('Add to shortlist', user_song_selections_path(current_user, song), :method => :post) %>
+        </td>
+
+      </tr>
+  <% end %>
   <tr>
 
     <!---->
   </tr>
 </table>
 
-<br />
+<br/>
 
