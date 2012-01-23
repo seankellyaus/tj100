@@ -4,6 +4,6 @@ class Selection < ActiveRecord::Base
 
   validates_uniqueness_of :song_id, :scope => :user_id, :message => "You have already selected that song"
 
-  SONGS_TO_SUBMIT = 40
+  SONGS_TO_SUBMIT = 5  # Change to 40 for implementation
 
 end

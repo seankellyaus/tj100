@@ -10,4 +10,13 @@ class Song < ActiveRecord::Base
             :conditions => ["songs.name LIKE ?", "#{letter}%"]
         }}
 
+  def self.import_cleanup
+    Song.find_each do |song|
+      song.name = song.name.gsub('**', ',')
+      song.artist = song.artist.gsub('**', ',')
+      song.save
+    end
+  end
+
+
 end

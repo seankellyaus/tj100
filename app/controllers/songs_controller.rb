@@ -10,15 +10,15 @@ class SongsController < ApplicationController
 
   def index
     @letters = ("A".."Z").to_a
+    @search = Song.search do
+      fulltext params[:search]
+    end
+    @songs = @search.results
     if params[:letter]
       @songs = Song.by_letter(params[:letter])
     else
       @songs = Song.all
     end
-    @search = Song.search do
-      fulltext params[:search]
-    end
-    @songs = @search.results
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs }

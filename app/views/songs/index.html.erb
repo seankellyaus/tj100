@@ -5,11 +5,14 @@
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search", :name => nil %>
 <% end %>
-<ul>
-  <% @letters.each do |letter| %>
-      <%= content_tag :li, link_to(letter, songs_pagination_url(letter), :title => "Pagination by letter: #{letter}") %>
-  <% end %>
-</ul>
+<nav class="round">
+  <ul>
+    <% @letters.each do |letter| %>
+        <%= content_tag :li, link_to(letter, songs_pagination_url(letter), :title => "Pagination by letter: #{letter}") %>
+    <% end %>
+  </ul>
+</nav>
+
 <table>
   <tr>
     <th>Name</th>
@@ -27,6 +30,7 @@
         <td><%= song.artist %></td>
         <td><%= song.place %></td>
         <td>
+
           <%= link_to('Add to shortlist', user_song_selections_path(current_user, song), :method => :post) %>
         </td>
 

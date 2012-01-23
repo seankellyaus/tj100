@@ -11,8 +11,8 @@ Tj100::Application.routes.draw do
     resources :selections #:only => :destroy
   end
 
-  resources :songs
   match "songs(/:letter)" => "songs#index", :as => :songs_pagination
+  resources :songs
 
   resources :selections do
     collection do

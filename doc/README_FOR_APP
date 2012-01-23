@@ -5,4 +5,18 @@ for searching, need to run this
 rake sunspot:solr:start
 
 Indexes all existing songs
-rake sunspot:reindex
+rake sunspot:reindexrake sunspot:
+
+Need to change # songs in Selection model to 40 for implementation
+
+
+to seed the song data, create a file db/songs.csv with the following format
+
+name,artist,link,year
+song title 1,artist 1,http://localhost/,2011
+
+Run command   rake csv_model_import[db/songs.csv,Song]
+
+Note: Watch out for comma's in the song and artist
+I ended up replacing the commas with **, then taking them out with method Song.import_cleanup
+
