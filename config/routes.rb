@@ -4,6 +4,7 @@ Tj100::Application.routes.draw do
   devise_for :users do
     get 'logout' => 'devise/sessions#destroy'
   end
+
   resources :users do
     resources :songs do
       resources :selections, :only => :create

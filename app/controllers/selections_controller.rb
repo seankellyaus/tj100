@@ -111,9 +111,13 @@ class SelectionsController < ApplicationController
   end
 
   def submit_picks
-    @user.submitted = true
-    @user.save
-    redirect_to :back, notice: 'Your picks have been submitted.'
+    if @user.selections.count == Selection::SONGS_TO_SUBMIT
+      @user.submitted = true
+      @user.save
+      redirect_to :back, notice: 'Your picks have been submitted.'
+    else
+      redirect_to :back, notice: 'You need to enter a total of #{Selection::SONGS_TO_SUBMIT} before you can submit'
+    end
   end
 
   private

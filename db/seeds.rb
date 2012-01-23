@@ -8,13 +8,13 @@
 
 
 
-Song.delete_all
+#Song.delete_all
 User.delete_all
 Selection.delete_all
 
-songs = Song.create([{  :name => "Song 1", :artist => "Artist 1"},
-                     {  :name => "Song 2", :artist => "Artist 2"},
-                     {  :name => "Song 3", :artist => "Artist 3"}])
+#songs = Song.create([{  :name => "Song 1", :artist => "Artist 1"},
+#                     {  :name => "Song 2", :artist => "Artist 2"},
+#                     {  :name => "Song 3", :artist => "Artist 3"}])
 
 users = User.create([{  :email => "aa@test.com", :password => "secret"},
                      {  :email => "bb@test.com", :password => "secret"},

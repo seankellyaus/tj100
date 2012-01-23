@@ -4,26 +4,28 @@
   <tr>
     <th>Song</th>
     <th>Artist</th>
-    <th>User</th>
     <th>#1</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
- <%= @user.email  %><br>
-  <%= @selections.last.song.name %><br>
-  <%= Selection::SONGS_TO_SUBMIT %><br>
   #TODO - get selection.song.name working in the loop below
 
 
   <% @selections.each do |selection| %>
   <tr>
     <td><%= selection.song_id %></td>
-    <td><%= link_to 'Remove from Shortlist', selection, method: :delete %></td>
+    <% if !@user.submitted?  %>
+        <td><%= link_to 'Remove from Shortlist', selection, method: :delete %></td>
+    <% end %>
+
   </tr>
 <% end %>
 
 </table>
-<%= link_to 'Submit songs', submit_picks_selections_path %>
+<%= @user.submitted %>
+<% if !@user.submitted?  %>
+    <%= link_to 'Submit songs', submit_picks_selections_path %>
+<% end %>
 <br />
