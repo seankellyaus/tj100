@@ -4,4 +4,10 @@ class Song < ActiveRecord::Base
   searchable do
     text :name, :artist
   end
+
+  scope :by_letter,
+        lambda { |letter| {
+            :conditions => ["songs.name LIKE ?", "#{letter}%"]
+        }}
+
 end

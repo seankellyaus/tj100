@@ -9,6 +9,12 @@ class SongsController < ApplicationController
 
 
   def index
+    @letters = ("A".."Z").to_a
+    if params[:letter]
+      @songs = Song.by_letter(params[:letter])
+    else
+      @songs = Song.all
+    end
     @search = Song.search do
       fulltext params[:search]
     end

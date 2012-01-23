@@ -11,8 +11,15 @@ Tj100::Application.routes.draw do
     resources :selections #:only => :destroy
   end
 
-  resources :selections
   resources :songs
+  match "songs(/:letter)" => "songs#index", :as => :songs_pagination
+
+  resources :selections do
+    collection do
+      get 'submit_picks'
+    end
+  end
+
 
   root :to => "pages#home"
 

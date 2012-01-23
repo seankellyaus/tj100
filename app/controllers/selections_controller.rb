@@ -9,7 +9,6 @@ class SelectionsController < ApplicationController
   #helper_method :submit_picks
 
   def index
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @selections }
@@ -114,6 +113,7 @@ class SelectionsController < ApplicationController
   def submit_picks
     @user.submitted = true
     @user.save
+    redirect_to :back, notice: 'Your picks have been submitted.'
   end
 
   private
