@@ -1,0 +1,19 @@
+<table>
+  <tr>The 100 Songs Listing</tr>
+  <tr>
+    <th>Name</th>
+    <th>Artist</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @songs.each do |song| %>
+      <tr>
+        <td><%= song.place %></td>
+        <td><%= song.name %></td>
+        <td><%= song.artist %></td>
+        <td><i>indicate who picked</i></td>
+      </tr>
+  <% end %>
+  <tr>

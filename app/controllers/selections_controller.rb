@@ -120,6 +120,15 @@ class SelectionsController < ApplicationController
     end
   end
 
+  def number1_pick
+    @selections.each do |select|
+      select.number1 = false
+      select.save
+    end
+    @selection.number1 = true
+    @selection.save
+    redirect_to :back, notice: 'Your #1 has been saved.'
+  end
   private
   def find_user
     @user = current_user

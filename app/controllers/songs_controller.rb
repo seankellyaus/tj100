@@ -1,23 +1,18 @@
 class SongsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_user
-
-
-
-  # GET /songs
-  # GET /songs.json
-
+  after_filter  :calc_scores, :only => :update
 
   def index
     @letters = ("A".."Z").to_a
     @search = Song.search do
       fulltext params[:search]
     end
-    @songs = @search.results
+
     if params[:letter]
       @songs = Song.by_letter(params[:letter])
     else
-      @songs = Song.all
+      @songs = @search.results
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -71,19 +66,19 @@ class SongsController < ApplicationController
 
   # PUT /songs/1
   # PUT /songs/1.json
-  #def update
-  #  @song = Song.find(params[:id])
-  #
-  #  respond_to do |format|
-  #    if @song.update_attributes(params[:song])
-  #      format.html { redirect_to @song, notice: 'Song was successfully updated.' }
-  #      format.json { head :ok }
-  #    else
-  #      format.html { render action: "edit" }
-  #      format.json { render json: @song.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
+  def update
+    @song = Song.find(params[:id])
+
+    respond_to do |format|
+      if @song.update_attributes(params[:song])
+        format.html { redirect_to @song, notice: 'Song was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /songs/1
   # DELETE /songs/1.json
@@ -97,10 +92,22 @@ class SongsController < ApplicationController
   #  end
   #end
 
+  def h100_list
+    @songs = Song.h100_list
+    #@songs = Song.first
+    #render 'layouts/h100_list'
+
+  end
   private
   def find_user
     @user = current_user
     #@user = User.first
+  end
+
+  def calc_scores
+    #after update, check if anyone picked this song
+    #and update their total score with the value for this song
+
   end
 
 end

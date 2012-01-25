@@ -15,7 +15,11 @@
 
   <% @selections.each do |selection| %>
   <tr>
-    <td><%= selection.song_id %></td>
+    <td><%= selection.song.name %></td>
+    <td><%= selection.song.artist %></td>
+    <% if !@user.submitted?  %>
+        <td><%= link_to '#1 pick', number1_pick_selections_path %></td>
+    <% end %>
     <% if !@user.submitted?  %>
         <td><%= link_to 'Remove from Shortlist', selection, method: :delete %></td>
     <% end %>

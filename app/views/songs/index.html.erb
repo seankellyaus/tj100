@@ -1,5 +1,5 @@
 <h1>Listing songs</h1>
-
+<%= params %>
 <%= form_tag songs_path, :method => :get do %>
     <p>
       <%= text_field_tag :search, params[:search] %>
@@ -27,8 +27,12 @@
         <td><%= song.name %></td>
         <td><%= song.artist %></td>
         <td>
-
-          <%= link_to('Add to shortlist', user_song_selections_path(current_user, song), :method => :post) %>
+          <% if !@user.submitted?  %>
+              <%= link_to('Add to shortlist', user_song_selections_path(current_user, song), :method => :post) %>
+          <% end %>
+          <% if @user.email = 'aa@test.com' || @user.email = 'sean@kiiii.com' %>
+              <%= link_to('Enter Place', edit_song_path(song)) %>
+          <% end %>
         </td>
 
       </tr>

@@ -4,6 +4,12 @@ Tj100::Application.routes.draw do
   devise_for :users do
     get 'logout' => 'devise/sessions#destroy'
   end
+  resources :selections do
+    collection do
+      get 'number1_pick'
+    end
+  end
+
 
   resources :users do
     resources :songs do
@@ -11,9 +17,18 @@ Tj100::Application.routes.draw do
     end
     resources :selections #:only => :destroy
   end
+  #match "songs(/:letter)" => "songs#index", :as => :songs_pagination
+
+  resources :songs do
+    collection do
+      get 'h100_list'
+    end
+  end
 
   match "songs(/:letter)" => "songs#index", :as => :songs_pagination
   resources :songs
+
+
 
   resources :selections do
     collection do

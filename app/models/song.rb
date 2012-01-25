@@ -5,6 +5,8 @@ class Song < ActiveRecord::Base
     text :name, :artist
   end
 
+  scope :h100_list, where('place > 0')
+
   scope :by_letter,
         lambda { |letter| {
             :conditions => ["songs.name LIKE ?", "#{letter}%"]

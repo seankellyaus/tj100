@@ -7,7 +7,7 @@
       <li><%= link_to "List All Songs", songs_path %></li>
       <li><%= link_to "My Picks", selections_path %></li>
       <li><%= link_to "Who's in?", users_path %></li>
-      <li><%= link_to "Song places", "#" %></li>
+      <li><%= link_to "Song places", h100_list_songs_path %></li>
       <li><%= link_to "Leaderboard", "#" %></li>
       <% if user_signed_in? %>
           Signed in as <%= current_user.email %>
